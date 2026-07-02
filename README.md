@@ -5,6 +5,7 @@ This project finds public GitHub candidates who appear to be actively building i
 ## What it does
 - Searches public GitHub repositories for your role + stack terms.
 - Builds a ranked list of candidate GitHub users.
+- Weighs recent GitHub activity heavily so active builders rise to the top.
 - Writes a CSV file for free by default.
 - Can also write to Google Sheets when credentials are provided.
 - The CSV file contains:
@@ -19,8 +20,10 @@ This project finds public GitHub candidates who appear to be actively building i
 1. Install dependencies:
    pip install -r requirements.txt
 2. Run the script:
-   python candidate_sourcing.py --role "software engineer" --tech-stack "rust,python,cpp" --limit 10
+   python candidate_sourcing.py --role "founding engineer" --tech-stack "rust,python,cpp" --limit 10
 3. Output file will be written to `output/candidates.csv`.
+
+You can swap in any role you want, such as `founding engineer`, `data scientist`, or `backend engineer`, and any comma-separated tech stack.
 
 ## Free CSV-first workflow
 This is the simplest free path:
@@ -29,7 +32,7 @@ This is the simplest free path:
 3. Run the script with just the role and tech stack:
    ```sh
    source .venv/bin/activate
-   python candidate_sourcing.py --role "software engineer" --tech-stack "rust,python,cpp" --experience-years 3 --limit 5
+   python candidate_sourcing.py --role "data scientist" --tech-stack "python,pandas,sql" --experience-years 3 --limit 5
    ```
 
 This path is free and does not require any Google credentials. If you want more reliable results and a higher GitHub API limit, set `GITHUB_TOKEN` in `.env`.
@@ -76,7 +79,7 @@ Follow these steps to create a Google service account and connect it to the scri
 11. Run the script:
     ```sh
     source .venv/bin/activate
-    python candidate_sourcing.py --role "software engineer" --tech-stack "rust,python,cpp" --experience-years 3 --limit 5
+   python candidate_sourcing.py --role "founding engineer" --tech-stack "rust,python,cpp" --experience-years 3 --limit 5
     ```
 
 If the sheet name does not exist yet, the script will create it automatically.
