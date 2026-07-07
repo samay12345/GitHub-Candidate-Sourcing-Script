@@ -517,11 +517,11 @@ def is_us_location(location: str) -> bool:
 
 
 def match_label(score: int) -> str:
-    if score >= 220:
+    if score >= 150:
         return "Strong match"
-    if score >= 160:
-        return "Good match"
     if score >= 100:
+        return "Good match"
+    if score >= 60:
         return "Moderate match"
     return "Weak match"
 
@@ -725,7 +725,7 @@ def build_candidates(role: str, tech_stack: List[str], limit: int = 10, experien
 
     def _enrich(login: str):
         try:
-            return login, fetch_user(login), fetch_user_repos(login, per_page=10)
+            return login, fetch_user(login), fetch_user_repos(login, per_page=30)
         except GitHubError as e:
             print(f"  API error for {login}: {e}", file=sys.stderr)
             return login, None, None
