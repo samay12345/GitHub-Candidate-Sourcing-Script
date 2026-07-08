@@ -270,10 +270,10 @@ with col1:
     role = st.text_input("Role", "software engineer", placeholder="e.g. backend engineer")
 with col2:
     tech_stack_input = st.text_input(
-        "Tech Stack",
-        "python,java",
+        "Tech Stack (optional)",
+        "",
         placeholder="e.g. python,react,postgres",
-        help="Separate multiple technologies with commas — e.g. python,pytorch,sql",
+        help="Separate multiple technologies with commas — e.g. python,pytorch,sql. Leave blank to search by role only.",
     )
 with col3:
     limit = st.number_input("Candidates", min_value=1, max_value=500, value=50, step=10)
@@ -301,8 +301,6 @@ if run:
 
     if not role.strip():
         st.error("Please enter a role.")
-    elif not tech_stack:
-        st.error("Please enter at least one tech stack item.")
     else:
         with st.spinner(f"Searching GitHub for {limit} {role} candidates…"):
             candidates = build_candidates(role, tech_stack, limit=limit, us_only=us_only)

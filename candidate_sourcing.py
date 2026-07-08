@@ -52,8 +52,9 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--tech-stack",
-        required=True,
-        help="Comma-separated tech stack, e.g. rust,python,cpp",
+        required=False,
+        default="",
+        help="Comma-separated tech stack, e.g. rust,python,cpp (optional)",
     )
     parser.add_argument("--limit", type=int, default=10, help="Number of candidates to return")
     parser.add_argument(
